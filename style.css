@@ -1,0 +1,108 @@
+/* Estilos básicos para el cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Estilos del formulario */
+  form {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos del título */
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Estilos del grupo de inputs */
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Estilos de las etiquetas */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  /* Estilos de los campos de entrada */
+  input[type="text"],
+  input[type="email"],
+  input[type="id"],
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para el botón de envío */
+  .btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Estilos para los enlaces */
+  .form-txt {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .form-txt a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+  }
+  
+  .form-txt a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilo de los selects */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Estilo para el contenedor del select */
+  .input-group select {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="%23000" d="M207 301.4l-105-105c-8.6-8.6-8.6-22.5 0-31.1l31.1-31.1c8.6-8.6 22.5-8.6 31.1 0L224 212.1l90.7-90.7c8.6-8.6 22.5-8.6 31.1 0l31.1 31.1c8.6 8.6 8.6 22.5 0 31.1l-105 105c-8.6 8.6-22.5 8.6-31.1 0z"/></svg>') no-repeat right 10px center;
+    background-size: 20px;
+  }
+  
