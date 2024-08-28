@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labaoratorio</title>
+    <title>Laboratorio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form id="contactForm" action="https://formsubmit.co/miguela.pinillar@utadeo.edu.co" method="POST">
+    <form id="contactForm" action="https://script.google.com/macros/s/AKfycbzsLMReCgd8yVkdZLSjvDwfNZmsum65fsdhl97tRSCx/dev" method="POST">
         <img src="assets/logo-utadeo.png" alt="logo-utadeo" class="responsive-img">
         <div class="input-group">
             <label for="name">Nombre</label>
@@ -16,18 +16,31 @@
             <input type="text" name="id" id="id" placeholder="Número de identificación" required>
             <label for="email">Email</label>
             <input type="email" name="email" id="email" placeholder="Email" required>
+            <label for="practice-name">Nombre de la práctica</label>
+            <input type="text" name="practice-name" id="practice-name" placeholder="Nombre de la práctica" required>
+            <label for="subject">Materia</label>
+            <input type="text" name="subject" id="subject" placeholder="Materia" required>
+            <label for="professor">Profesor</label>
+            <input type="text" name="professor" id="professor" placeholder="Profesor" required>
+            <label for="classroom">Aula:</label>
+            <select id="classroom" name="classroom" required>
+                <option value="bioinformatica">Bioinformática</option>
+                <option value="laboratorio-ciri">Laboratorio Ceri</option>
+            </select>
             <label for="tiempo-uso">Tiempo de uso:</label>
             <select id="tiempo-uso" name="tiempo-uso" required>
                 <option value="30 min">30 min</option>
                 <option value="60 min">60 min</option>
                 <option value="90 min">90 min</option>
                 <option value="120 min">120 min</option>
+                <option value="150 min">150 min</option>
+                <option value="180 min">180 min</option>
             </select>
             <label for="numero-equipo">Número de equipo:</label>
             <select id="numero-equipo" name="numero-equipo" required>
                 <option value="#1">#1</option>
                 <option value="#2">#2</option>
-                <option value="#13">#3</option>
+                <option value="#3">#3</option>
                 <option value="#4">#4</option>
                 <option value="#5">#5</option>
                 <option value="#6">#6</option>
@@ -75,39 +88,107 @@
             loader.style.display = 'inline-block';
             btnText.style.display = 'none';
             var formData = new FormData(this);
+            var data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
             fetch(this.action, {
                 method: 'POST',
-                body: formData,
+                body: JSON.stringify(data),
                 headers: {
-                    'Accept': 'application/json'
+                    'Content-Type': 'application/json'
                 }
             })
-                .then(response => {
-                    const modalMessage = document.getElementById('modalMessage');
-                    if (response.ok) { 
-                        modalMessage.textContent = "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.";
-                    } else {
-                        modalMessage.textContent = "Hubo un problema con el envío del formulario. Por favor, inténtelo de nuevo.";
-                    }
-                    showModal();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    const modalMessage = document.getElementById('modalMessage');
+            .then(response => response.json())
+            .then(result => {
+                const modalMessage = document.getElementById('modalMessage');
+                if (result.result === 'success') { 
+                    modalMessage.textContent = "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.";
+                } else {
                     modalMessage.textContent = "Hubo un problema con el envío del formulario. Por favor, inténtelo de nuevo.";
-                    showModal(); 
-                })
-                .finally(() => {
-                    loader.style.display = 'none';
-                    btnText.style.display = 'inline';
-                });
+                }
+                showModal();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const modalMessage = document.getElementById('modalMessage');
+                modalMessage.textContent = "Hubo un problema con el envío del formulario. Por favor, inténtelo de nuevo.";
+                showModal(); 
+            })
+            .finally(() => {
+                loader.style.display = 'none';
+                btnText.style.display = 'inline';
+            });
         });
+
         function showModal() {
             document.getElementById('responseModal').style.display = 'block';
         }
+
         function closeModal() {
             document.getElementById('responseModal').style.display = 'none';
         }
     </script>
+    <div>
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const loader = document.getElementById('loader');
+    const btnText = document.querySelector('.btn-text');
+    const responseModal = document.getElementById('responseModal');
+    const modalMessage = document.getElementById('modalMessage');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        loader.style.display = 'inline-block';
+        btnText.style.display = 'none';
+
+        const formData = new FormData(this);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        fetch(this.action, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.result === 'success') { 
+                modalMessage.textContent = "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.";
+            } else {
+                modalMessage.textContent = "Hubo un problema con el envío del formulario. Por favor, inténtelo de nuevo.";
+            }
+            showModal();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            modalMessage.textContent = "Hubo un problema con el envío del formulario. Por favor, inténtelo de nuevo.";
+            showModal(); 
+        })
+        .finally(() => {
+
+            loader.style.display = 'none';
+            btnText.style.display = 'inline';
+        });
+    });
+
+    function showModal() {
+        responseModal.style.display = 'block';
+    }
+
+    window.closeModal = function () {
+        responseModal.style.display = 'none';
+    }
+});
+
+
+        </script>
+    </div>
 </body>
 </html>
