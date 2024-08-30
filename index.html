@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form id="contactForm" action="https://hooks.zapier.com/hooks/catch/19957728/2tdsfwc/" method="POST">
+    <form id="contactForm" action="{{ url_for('submit') }}" method="POST">
         <img src="assets/logo-utadeo.png" alt="Logo Utadeo" class="responsive-img">
         <div class="input-group">
             <label for="name">Nombre</label>
